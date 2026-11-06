@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIA Mock Exam</title>
+<meta name="description" content="Untimed SIA licence mock exams. 40 questions drawn at random, scored at the end.">
+<meta name="theme-color" content="#14263b">
+<link rel="manifest" href="manifest.webmanifest">
+
+<!-- iOS standalone install -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SIA Mock">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+
+<link rel="stylesheet" href="app.css?v=1">
+</head>
+<body>
+
+<!-- A silent failure on a phone looks like a working app, so paint it instead. -->
+<div id="crash" hidden></div>
+<script>
+window.onerror = function (msg, src, line, col) {
+  var box = document.getElementById('crash');
+  if (!box) { return; }
+  box.hidden = false;
+  box.textContent = 'This app hit an error and stopped.\n\n' + msg +
+    '\n\n' + (src || '') + ' line ' + line + ':' + col +
+    '\n\nPlease send this text to whoever set the app up.';
+};
+</script>
+
+<header class="bar">
+  <h1>SIA Mock Exam</h1>
+  <p id="barnote">Untimed practice</p>
+</header>
+
+<main id="main">
+
+  <!-- ---------------------------------------------------------- start -->
+  <section id="view-start" class="view">
+    <p class="lead">Pick a module. You get <strong>40 questions</strong> drawn at random
+      from that module, in a new order every time. There is <strong>no time limit</strong> &mdash;
+      your place is saved if you close the app.</p>
+
+    <div id="resume" hidden class="card resume">
+      <h2>Carry on where you left off</h2>
+      <p id="resume-note"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="btn-resume">Resume</button>
+        <button type="button" class="btn quiet" id="btn-discard">Start fresh instead</button>
+      </div>
+    </div>
+
+    <div class="choices" id="module-list"></div>
+
+    <details class="card about">
+      <summary>About these questions</summary>
+      <p>172 questions taken from the two mock papers &mdash; 72 in Module 1 and 100 in
+        Module 2.</p>
+      <p>Two answers in the original handout were wrong, so this app marks the correct one
+        and explains the difference on the review screen. Questions whose wording is loose
+        or out of date carry a note as well. Those notes only appear once you have finished,
+        so they cannot help you during the exam.</p>
+      <p class="small">Practice material only. It is not an official SIA paper and the
+        indicative 70% pass mark is a guide, not the awarding body's.</p>
+    </details>
+  </section>
+
+  <!-- ----------------------------------------------------------- exam -->
+  <section id="view-exam" class="view" hidden>
+    <div class="progress">
+      <div class="progress-bar"><span id="pbar"></span></div>
+      <p id="pcount"></p>
+    </div>
+
+    <div class="card question">
+      <p class="qmeta" id="qmeta"></p>
+      <h2 id="qtext"></h2>
+      <div id="qopts" class="opts"></div>
+    </div>
+
+    <div class="row nav">
+      <button type="button" class="btn quiet" id="btn-prev">Back</button>
+      <button type="button" class="btn primary" id="btn-next">Next</button>
+    </div>
+    <p class="small centre" id="unanswered"></p>
+    <div class="row">
+      <button type="button" class="btn quiet wide" id="btn-quit">Abandon this attempt</button>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------- result -->
+  <section id="view-result" class="view" hidden>
+    <div class="card score" id="scorecard">
+      <p class="score-head" id="score-head"></p>
+      <p class="score-big"><span id="score-pct"></span></p>
+      <div class="tally">
+        <div class="tally-cell good"><strong id="score-right"></strong><span>correct</span></div>
+        <div class="tally-cell bad"><strong id="score-wrong"></strong><span>wrong</span></div>
+      </div>
+      <p class="small" id="score-note"></p>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn primary wide" id="btn-again">Do it again</button>
+    </div>
+    <div class="row">
+      <button type="button" class="btn quiet wide" id="btn-home">Choose another module</button>
+    </div>
+
+    <h2 class="section-head">Review all 40</h2>
+    <p class="small">Tap a question to open it.</p>
+    <div id="review" class="review"></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p class="version">build 1</p>
+</footer>
+
+<script src="questions.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

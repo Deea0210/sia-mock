@@ -110,6 +110,26 @@ main {
 .card p:last-child { margin-bottom: 0; }
 
 .resume { border-color: var(--accent); background: var(--accent-soft); }
+.weak { border-left: 4px solid var(--bad); }
+/* Stacked, not side by side: "Practise these" wraps to two lines at 375px. */
+.weak .btn { display: block; width: 100%; margin-bottom: 8px; }
+.weak .btn:last-child { margin-bottom: 0; }
+
+@media (min-width: 420px) {
+  .weak .btn { display: inline-block; width: 48%; margin-bottom: 0; }
+  .weak .btn:first-child { float: left; }
+  .weak .btn:last-child { float: right; }
+}
+
+/* ------------------------------------------------------------- progress */
+.prow {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.prow:first-child { border-top: 0; padding-top: 0; }
+.prow-name { display: block; font-weight: 650; }
+.prow-meta { display: block; margin-top: 2px; font-size: 14px; color: var(--ink-soft); }
+.prow-meta.ok { color: var(--good); }
 .about summary {
   cursor: pointer;
   font-weight: 600;
@@ -297,6 +317,7 @@ main {
 .rev-line .lab { color: var(--ink-soft); }
 .rev-line.yours.wrong-ans { color: var(--bad); }
 .rev-line.correct-ans { color: var(--good); font-weight: 600; }
+.rev-line.hist { margin-top: 9px; font-size: 13px; color: var(--ink-soft); }
 
 .rev-note {
   margin: 10px 0 0;

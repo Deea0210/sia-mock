@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 <link rel="icon" href="icons/icon-192.png">
 
-<link rel="stylesheet" href="app.css?v=1">
+<link rel="stylesheet" href="app.css?v=2">
 </head>
 <body>
 
@@ -55,6 +55,20 @@ window.onerror = function (msg, src, line, col) {
     </div>
 
     <div class="choices" id="module-list"></div>
+
+    <div id="weak-card" hidden class="card weak">
+      <h2>Your weak spots</h2>
+      <p id="weak-note"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="btn-weak">Practise these</button>
+        <button type="button" class="btn quiet" id="btn-weak-list">See the list</button>
+      </div>
+    </div>
+
+    <div id="progress-card" hidden class="card">
+      <h2>Your progress</h2>
+      <div id="progress-body"></div>
+    </div>
 
     <details class="card about">
       <summary>About these questions</summary>
@@ -102,6 +116,7 @@ window.onerror = function (msg, src, line, col) {
         <div class="tally-cell bad"><strong id="score-wrong"></strong><span>wrong</span></div>
       </div>
       <p class="small" id="score-note"></p>
+      <p class="small" id="score-history"></p>
     </div>
 
     <div class="row">
@@ -111,18 +126,34 @@ window.onerror = function (msg, src, line, col) {
       <button type="button" class="btn quiet wide" id="btn-home">Choose another module</button>
     </div>
 
-    <h2 class="section-head">Review all 40</h2>
+    <h2 class="section-head" id="review-head">Review all 40</h2>
     <p class="small">Tap a question to open it.</p>
     <div id="review" class="review"></div>
+  </section>
+
+  <!-- ---------------------------------------------------- weak spot list -->
+  <section id="view-weak" class="view" hidden>
+    <h2 class="section-head">Questions you get wrong</h2>
+    <p class="small">Most missed first. Tap one to see the right answer.</p>
+    <div id="weak-list" class="review"></div>
+    <div class="row">
+      <button type="button" class="btn primary wide" id="btn-weak-from-list">Practise these</button>
+    </div>
+    <div class="row">
+      <button type="button" class="btn quiet wide" id="btn-weak-back">Back</button>
+    </div>
+    <div class="row">
+      <button type="button" class="btn quiet wide" id="btn-clear">Clear my history</button>
+    </div>
   </section>
 
 </main>
 
 <footer class="foot">
-  <p class="version">build 1</p>
+  <p class="version">build 2</p>
 </footer>
 
-<script src="questions.js?v=1"></script>
-<script src="app.js?v=1"></script>
+<script src="questions.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

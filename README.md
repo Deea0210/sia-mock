@@ -20,6 +20,34 @@ Live at **https://deea0210.github.io/sia-mock/**
 - **Full review** of all 40 with your answer against the right one, and a note on any
   question whose wording is loose or whose handout answer was wrong.
 - **Do it again** reshuffles a new 40 from the same module.
+- **Weak spots.** Every answer is recorded per question, so the app knows what keeps
+  catching you out and can build an attempt from exactly those.
+
+## What it tracks (build 2)
+
+Two separate things live in the browser's `localStorage`:
+
+- `sia.v1` — the attempt **in progress**, so closing the app loses nothing. Cleared
+  when you finish or abandon.
+- `sia.stats.v1` — your **history**: per question `{s: seen, w: wrong, c: right in a
+  row}`, plus the last 50 attempt scores.
+
+A question joins the weak list the first time you get it wrong, and **drops off once
+you get it right twice running** (`MASTERED` in `app.js`). Without that rule the list
+would only ever grow — one slip in January would still be a "weak spot" in June.
+
+"Practise these" builds a 40-question attempt from the weak list, worst first, then
+pads with questions you have never seen, then the rest — so a short weak list still
+gives you a full paper rather than a five-question one.
+
+The start screen shows a progress row per module (attempts, best, last), and the
+result screen says whether you are up or down on last time. "Clear my history" on the
+weak-spot list wipes `sia.stats.v1` only.
+
+**This data is per browser and per device.** It is not on any server, it does not
+follow you to another phone, and clearing the site's data in browser settings deletes
+it. There is no export — if that matters later, add one before suggesting anyone clear
+anything.
 
 ## The question bank
 

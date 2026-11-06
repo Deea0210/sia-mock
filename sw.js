@@ -3,14 +3,14 @@
    phone once and could not be recovered; offline use is worth less than being
    able to ship a fix. Bump CACHE on every release. */
 
-var CACHE = 'sia-mock-v1';
+var CACHE = 'sia-mock-v2';
 
 var SHELL = [
   './',
   'index.html',
-  'app.css?v=1',
-  'app.js?v=1',
-  'questions.js?v=1',
+  'app.css?v=2',
+  'app.js?v=2',
+  'questions.js?v=2',
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',
